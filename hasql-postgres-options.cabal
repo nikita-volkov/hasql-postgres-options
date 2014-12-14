@@ -1,7 +1,7 @@
 name:
   hasql-postgres-options
 version:
-  0.1.0
+  0.1.1
 synopsis:
   An "optparse-applicative" parser for "hasql-postgres"
 category:
@@ -50,7 +50,5 @@ library
     -- 
     optparse-applicative == 0.11.*,
     -- 
-    bytestring == 0.10.*,
-    --
     base-prelude >= 0.1.8 && < 0.2,
     base >= 4.5 && < 4.8

@@ -1,7 +1,6 @@
 module Hasql.Postgres.Options where
 
 import BasePrelude
-import Data.ByteString (ByteString)
 import Options.Applicative
 import qualified Hasql.Postgres as HP
 
@@ -13,7 +12,7 @@ settings prefix =
   HP.ParamSettings <$> host <*> port <*> user <*> password <*> database
   where
     host =
-      option auto $
+      fmap fromString $ strOption $
         long (applyPrefix "host") <> 
         value "127.0.0.1" <>
         showDefault <>
@@ -25,26 +24,22 @@ settings prefix =
         showDefault <>
         help "Server port"
     user =
-      option auto $
+      fmap fromString $ strOption $
         long (applyPrefix "user") <>
         value "postgres" <>
         showDefault <>
         help "Username"
     password =
-      option auto $
+      fmap fromString $ strOption $
         long (applyPrefix "password") <>
         value "" <>
         showDefault <>
         help "Password"
     database =
-      option auto $
+      fmap fromString $ strOption $
         long (applyPrefix "database") <>
         value "" <>
         showDefault <>
         help "Default database name"
     applyPrefix s = 
       maybe s (<> ("-" <> s)) prefix
-
-
-
-
